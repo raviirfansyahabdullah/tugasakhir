@@ -4,9 +4,9 @@
 
 Laravel 8 pepustakaan dibuat oleh :
 
-- Github : <a href="https://github.com/musyahya](https://github.com/raviirfansyahabdullah/tugasakhir.git\)"> BOOTCAMP KELOMPOK 4 </a>
+- github : <a href="https://github.com/musyahya](https://github.com/raviirfansyahabdullah/tugasakhir.git\"> BOOTCAMP KELOMPOK 4 </a>
 - Video Review Kelompok : <a href="https://drive.google.com/file/d/1H6EvE28m1D6vNrdtnqE1JD1x87Xt5vzA/view?usp=sharing">  BOOTCAMP KELOMPOK 4 </a>
-- Deploy : <a href = "">
+- ERD : <a href = "https://drive.google.com/file/d/1nwsqfbM0rFRdwImrbfYtIKbrXZsHSIhw/view?usp=share_link"> BOOTCAMP KELOMPOK 4 </a>
 
 ## User
 
