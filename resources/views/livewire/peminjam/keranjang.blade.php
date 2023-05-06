@@ -36,6 +36,7 @@
                     <th>Penulis</th>
                     <th>Rak</th>
                     <th>Baris</th>
+                    <th>aksi</th>
                     @if (!$keranjang->tanggal_pinjam)
                         <th></th>
                     @endif   
@@ -50,8 +51,10 @@
                             <td>{{$item->buku->rak->rak}}</td>
                             <td>{{$item->buku->rak->baris}}</td>
                             <td>
+                                <button type="button" class="btn btn-danger
+                            <td>
                                 @if (!$keranjang->tanggal_pinjam)
-                                    <button wire:click="hapus({{$keranjang->id}}, {{$item->id}})" class="btn btn-sm btn-danger">Hapus</button>
+                                    <button wire:click="hapus({{ $keranjang->id}}, {{$item->id}})" class="btn btn-sm btn-danger">Hapus</button>
                                 @endif       
                             </td>
                         </tr>

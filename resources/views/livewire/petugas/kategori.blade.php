@@ -1,70 +1,75 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div class="row">
+    <div class="col-12">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
-                 <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Kategori
-                        </a>
+    @include('admin-lte/flash')
 
-                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown" style="cursor: pointer">
-                            <a class="dropdown-item" wire:click="semuaKategori">Semua Kategori</a>
-                            <div class="dropdown-divider"></div>
-                            @foreach ($kategori as $item)
-                                <a class="dropdown-item" wire:click="pilihKategori({{$item->id}})">{{$item->nama}}</a>
-                            @endforeach
-                        </div>
-                    </li>
-            </ul>
+    @include('petugas/kategori/create')
+    @include('petugas/kategori/edit')
+    @include('petugas/kategori/delete')
 
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
+    <div class="card">
+        <div class="card-header">
+        <span wire:click="create" class="btn btn-sm btn-primary">Tambah</span>
 
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    @if ($count > 0)
-                        <li class="nav-item">
-                            <a class="nav-link" href="/keranjang">Keranjang <span class="badge badge-primary">{{$count}}</span></a>
-                        </li>
-                    @endif
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
+      
+              <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                <input wire:model="search" type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-        </div>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- /.card-header -->
+            @if ($kategori->isNotEmpty())
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                        <tr>
+                            <th width="10%">No</th>
+                            <th>Kategori</th>
+                            <th width="15%">Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($kategori as $item)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$item->nama}}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <span wire:click="edit({{$item->id}})" class="btn btn-sm btn-primary mr-2">Edit</span>
+                                        <span wire:click="delete({{$item ->id}})" class="btn btn-sm btn-danger">Hapus</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            @endif
     </div>
-</nav>
+    <!-- /.card -->
+
+    <div class="row justify-content-center">
+        {{$kategori->links()}}
+    </div>
+
+    @if ($kategori->isEmpty())
+        <div class="card">
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    Anda tidak memiliki data
+                </div>
+            </div>
+        </div>
+    @endif
+
+    </div>
+</div>
+<!-- /.row -->
